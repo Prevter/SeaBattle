@@ -1,7 +1,7 @@
 ﻿cmake_minimum_required (VERSION 3.15)
 
 project (
-	Template
+	SeaBattle
 	LANGUAGES CXX
 	VERSION 1.0
 )
@@ -9,6 +9,9 @@ project (
 add_executable (
 	${CMAKE_PROJECT_NAME}
 	"src/main.cpp"
+	"src/Ship.cpp" "src/Ship.h"
+	"src/PlayerGrid.h" "src/PlayerGrid.cpp"
+	"src/AI.h" "src/AI.cpp"
 )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
@@ -42,4 +45,11 @@ target_link_libraries (
 	${CMAKE_PROJECT_NAME}
 	sfml-system sfml-window sfml-graphics sfml-network sfml-audio
 	ImGui-SFML::ImGui-SFML
+)
+
+add_custom_target(
+	run-exe
+	COMMAND ${CMAKE_PROJECT_NAME}.exe
+	WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
+    VERBATIM
 )
